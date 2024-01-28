@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('isbn_number',50);
             $table->integer('qty');
             $table->integer('pages');
-            $table->text('resume');
+            $table->text('resume')->nullable();
             $table->timestamps();
 
             $table->foreign('publisher_id')->references('id')->on('publishers');
