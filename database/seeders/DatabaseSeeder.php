@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(AuthorSeeder::class);
         // $this->call(GenreSeeder::class);
         // $this->call(PublisherSeeder::class);
+        //  $this->call(BookSeeder::class);
+        $this->call(OrderSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
