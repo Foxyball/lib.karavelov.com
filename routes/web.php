@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () {
-        return view('welcome');
-    });
+        return view('index');
+    }
+);
+
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
-
-// Route::middleware(['auth', 'role:admin'])->group(function () {
-
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
