@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-action">
-                    <span class="card-title">Всички автори</span>
+                    <span class="card-title">Всички издатели</span>
                 </div>
                 <div class="card-content">
 
@@ -22,22 +22,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($authors as $author)
+                            @foreach ($publishers as $publisher)
                                 <tr>
-                                    <td>{{ $author->author }}</td>
+                                    <td>{{ $publisher->publisher }}</td>
                                     <td>
-                                        <a href="{{ route('edit.author', $author->id) }}"><i
+                                        <a href="{{ route('edit.publisher', $publisher->id) }}"><i
                                                 class="fa-solid fa-edit"></i></a>
-                                        <a href="{{ route('delete.author', $author->id) }}" id="delete"><i
+                                        <a href="{{ route('delete.publisher', $publisher->id) }}" id="delete"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                
+                    {{ $publishers->links('vendor.pagination.custom') }}
                 </div>
-                {{$authors->links('vendor.pagination.custom')}}
             </div>
         </div>
     @endsection

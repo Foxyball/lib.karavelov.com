@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AuthorController;
-use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Backend\PublisherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Authors Manage
-Route::middleware(['auth','role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(AuthorController::class)->group(function () {
         Route::get('/all/author', 'all_author')->name('all.author');
         Route::get('/add/author', 'add_author')->name('add.author');
@@ -41,9 +41,22 @@ Route::middleware(['auth','role:admin'])->group(function () {
     });
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Publishers Manage
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(PublisherController::class)->group(function () {
+        Route::get('/all/publisher', 'all_publisher')->name('all.publisher');
+        Route::get('/add/publisher', 'add_publisher')->name('add.publisher');
+        Route::post('/store/publisher', 'store_publisher')->name('store.publisher');
+        Route::get('/edit/publisher/{id}', 'edit_publisher')->name('edit.publisher');
+        Route::post('/update/publisher', 'update_publisher')->name('update.publisher');
+        Route::get('/delete/publisher/{id}', 'delete_publisher')->name('delete.publisher');
+    });
+});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
