@@ -31,6 +31,7 @@
                 <a class="active-menu waves-effect waves-dark" href="{{url('/')}}"><i class="fa-solid fa-house"></i>
                     Начало</a>
             </li>
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-pencil"></i> Заявки <span
                         class="fa arrow"></span></a>
@@ -49,6 +50,8 @@
 
                 </ul>
             </li>
+            @endif
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fas fa-users"></i> Потребители <span
                         class="fa arrow"></span></a>
@@ -61,6 +64,8 @@
                     </li>
                 </ul>
             </li>
+            @endif
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-book"></i> Книги <span
                         class="fa arrow"></span></a>
@@ -73,6 +78,8 @@
                     </li>
                 </ul>
             </li>
+            @endif
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fas fa-th"></i> Издател <span
                         class="fa arrow"></span></a>
@@ -85,20 +92,23 @@
                     </li>
                 </ul>
             </li>
+            @endif
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-copyright"></i> Автор <span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa-solid fa-plus"></i>Добавяне</a>
+                        <a href="{{route('add.author')}}"><i class="fa-solid fa-plus"></i>Добавяне</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>
+                        <a href="{{route('all.author')}}"><i class="fa-solid fa-bars"></i>Менажиране</a>
                     </li>
                 </ul>
             </li>
+            @endif
             <li>
-                <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-globe"></i> Мрежа <span
+                <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-globe"></i> Жанр <span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -110,26 +120,6 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
-                    Charts</a>
-            </li>
-
-
-            <li>
-                <a href="table.html" class="waves-effect waves-dark"><i class="fa fa-table"></i> Responsive
-                    Tables</a>
-            </li>
-            <li>
-                <a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
-            </li>
-
-
-
-            <li>
-                <a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty
-                    Page</a>
-            </li>
         </ul>
 
     </div>

@@ -20,11 +20,14 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="{{ asset('adminAssets/assets/js/Lightweight-Chart/cssCharts.css') }}">
     <script src="https://kit.fontawesome.com/69b6030e72.js" crossorigin="anonymous"></script>
+
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
     <div id="wrapper">
-       
+
         <!--/. NAV TOP  -->
         @include('include.sidebar')
         <!-- /. NAV SIDE  -->
@@ -45,7 +48,39 @@
             <!-- /. PAGE WRAPPER  -->
         </div>
         <!-- /. WRAPPER  -->
-        <!-- JS Scripts-->
+
+          <!--plugins-->
+    <script src="{{ asset('adminAssets/assets/js/jquery.min.js') }}"></script>
+
+        <!-- toastr -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <!-- jquery-validation -->
+        <script src="{{ asset('adminAssets/assets/js/validate.min.js') }}"></script>
+        <!-- sweetalert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <!-- validation -->
+        <script src="{{ asset('adminAssets/assets/js/code.js') }}"></script>
+
+        <script>
+            @if (Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}"
+                switch (type) {
+                    case 'info':
+                        toastr.info(" {{ Session::get('message') }} ");
+                        break;
+                    case 'success':
+                        toastr.success(" {{ Session::get('message') }} ");
+                        break;
+                    case 'warning':
+                        toastr.warning(" {{ Session::get('message') }} ");
+                        break;
+                    case 'error':
+                        toastr.error(" {{ Session::get('message') }} ");
+                        break;
+                }
+            @endif
+        </script>
+
         <!-- jQuery Js -->
         <script src="{{ asset('adminAssets/assets/js/jquery-1.10.2.js') }}"></script>
 
