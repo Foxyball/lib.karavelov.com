@@ -85,10 +85,10 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa-solid fa-plus"></i>Добавяне</a>
+                        <a href="{{route('add.publisher')}}"><i class="fa-solid fa-plus"></i>Добавяне</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>
+                        <a href="{{route('all.publisher')}}"><i class="fa-solid fa-bars"></i>Менажиране</a>
                     </li>
                 </ul>
             </li>
@@ -112,7 +112,7 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa-solid fa-plus"></i>Добавян</a>
+                        <a href="#"><i class="fa-solid fa-plus"></i>Добавяне</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>

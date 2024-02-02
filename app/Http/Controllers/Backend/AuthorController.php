@@ -12,7 +12,7 @@ class AuthorController extends Controller
 {
     public function all_author()
     {
-        $authors = Author::latest()->get();
+        $authors = Author::latest()->paginate(5);
 
         return view('author.author_all', compact('authors'));
     }
