@@ -57,10 +57,10 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa-solid fa-plus"></i>Добавяне</a>
+                        <a href="{{route('add.user')}}"><i class="fa-solid fa-plus"></i>Добавяне</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>
+                        <a href="{{route('all.user')}}"><i class="fa-solid fa-bars"></i>Менажиране</a>
                     </li>
                 </ul>
             </li>
@@ -107,17 +107,24 @@
                 </ul>
             </li>
             @endif
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="#" class="waves-effect waves-dark"><i class="fa-solid fa-globe"></i> Жанр <span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa-solid fa-plus"></i>Добавяне</a>
+                        <a href="{{route('add.genre')}}"><i class="fa-solid fa-plus"></i>Добавяне</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>
+                        <a href="{{route('all.genre')}}"><i class="fa-solid fa-bars"></i>Менажиране</a>
                     </li>
                 </ul>
+            </li>
+            @endif
+
+            <li>
+                <a href="{{ route('admin.change_password') }}" class="waves-effect waves-dark"><i
+                        class="fa-solid fa-key"></i> Смяна на парола</a>
             </li>
 
         </ul>
