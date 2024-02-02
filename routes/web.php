@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AuthorController;
+use App\Http\Controllers\Backend\GenreController;
 use App\Http\Controllers\Backend\PublisherController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +54,36 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/publisher', 'update_publisher')->name('update.publisher');
         Route::get('/delete/publisher/{id}', 'delete_publisher')->name('delete.publisher');
     });
+});
+
+// Genres Manage
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(GenreController::class)->group(function () {
+        Route::get('/all/genre', 'all_genre')->name('all.genre');
+        Route::get('/add/genre', 'add_genre')->name('add.genre');
+        Route::post('/store/genre', 'store_genre')->name('store.genre');
+        Route::get('/edit/genre/{id}', 'edit_genre')->name('edit.genre');
+        Route::post('/update/genre', 'update_genre')->name('update.genre');
+        Route::get('/delete/genre/{id}', 'delete_genre')->name('delete.genre');
+    });
+});
+
+// Users Manage
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/all/user', [UserController::class, 'all_user'])->name('all.user');
+    Route::get('/add/user', [UserController::class, 'add_user'])->name('add.user');
+    Route::post('/store/user', [UserController::class, 'store_user'])->name('store.user');
+    Route::get('/edit/user/{id}', [UserController::class, 'edit_user'])->name('edit.user');
+    Route::post('/update/user/{id}', [UserController::class, 'update_user'])->name('update.user');
+    Route::get('/delete/user/{id}', [UserController::class, 'delete_user'])->name('delete.user');
+    Route::get('/user/change/password/{id}', [UserController::class, 'change_password'])->name('change.password');
+    Route::post('/user/update/password', [UserController::class, 'update_password'])->name('update.password');
+});
+
+// Admin Change Password
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/change/password', [AdminController::class, 'admin_change_password'])->name('admin.change_password');
+    Route::post('/admin/update/password', [AdminController::class, 'admin_update_password'])->name('admin.update_password');
 });
 
 // Route::get('/dashboard', function () {
