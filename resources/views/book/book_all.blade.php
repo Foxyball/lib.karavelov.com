@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-action">
-                    <span class="card-title">Всички автори</span>
+                    <span class="card-title">Всички книги</span>
                 </div>
                 <div class="card-content">
 
@@ -14,14 +14,6 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('search.author') }}" method="GET">
-                        <div class="input-field">
-                            <input id="search" type="search" name="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                    </form>
-
                     <table class="responsive-table">
                         <thead>
                             <tr>
@@ -30,28 +22,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($authors as $author)
+                            @foreach ($books as $book)
                                 <tr>
-                                    <td>{{ $author->author }}</td>
+                                    <td>{{ $book->book }}</td>
                                     <td>
-                                        <a href="{{ route('edit.author', $author->id) }}"><i
+                                        <a href="{{ route('edit.book', $book->id) }}"><i
                                                 class="fa-solid fa-edit"></i></a>
-                                        <a href="{{ route('delete.author', $author->id) }}" id="delete"><i
+                                        <a href="{{ route('delete.book', $book->id) }}" id="delete"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-
-                            @if ($authors->isEmpty())
-                                <tr>
-                                    <td style="color:red;" colspan="2">Няма намерени резултати</td>
-                                </tr>
-                            @endif
                         </tbody>
                     </table>
-
+                    {{ $books->links('vendor.pagination.custom') }}
                 </div>
-                {{ $authors->links('vendor.pagination.custom') }}
             </div>
         </div>
     @endsection

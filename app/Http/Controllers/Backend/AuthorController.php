@@ -92,9 +92,19 @@ class AuthorController extends Controller
             'message' => 'Успешно изтрихте автор!',
             'alert-type' => 'success'
         );
-        
+
         Session::flash('success', 'Успешно изтрихте автор!');
 
         return redirect()->route('all.author')->with($notification);
+    }
+
+    public function search_author(Request $request)
+    {
+        $search = $request->search;
+
+        // Use paginate instead of get because of the links
+        $authors = Author::where('author', 'like', '%' . $search . '%')->paginate(5);
+
+        return view('author.author_all', compact('authors'));
     }
 }

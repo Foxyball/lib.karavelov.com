@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AuthorController;
+use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\GenreController;
 use App\Http\Controllers\Backend\PublisherController;
 use App\Http\Controllers\Backend\UserController;
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/author/{id}', 'edit_author')->name('edit.author');
         Route::post('/update/author', 'update_author')->name('update.author');
         Route::get('/delete/author/{id}', 'delete_author')->name('delete.author');
+        Route::get('/search/author', 'search_author')->name('search.author');
     });
 });
 
@@ -70,30 +72,38 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 // Users Manage
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/all/user', [UserController::class, 'all_user'])->name('all.user');
-    Route::get('/add/user', [UserController::class, 'add_user'])->name('add.user');
-    Route::post('/store/user', [UserController::class, 'store_user'])->name('store.user');
-    Route::get('/edit/user/{id}', [UserController::class, 'edit_user'])->name('edit.user');
-    Route::post('/update/user/{id}', [UserController::class, 'update_user'])->name('update.user');
-    Route::get('/delete/user/{id}', [UserController::class, 'delete_user'])->name('delete.user');
-    Route::get('/user/change/password/{id}', [UserController::class, 'change_password'])->name('change.password');
-    Route::post('/user/update/password', [UserController::class, 'update_password'])->name('update.password');
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/all/user', 'all_user')->name('all.user');
+        Route::get('/add/user', 'add_user')->name('add.user');
+        Route::post('/store/user', 'store_user')->name('store.user');
+        Route::get('/edit/user/{id}', 'edit_user')->name('edit.user');
+        Route::post('/update/user/{id}', 'update_user')->name('update.user');
+        Route::get('/delete/user/{id}', 'delete_user')->name('delete.user');
+        Route::get('/user/change/password/{id}', 'change_password')->name('change.password');
+        Route::post('/user/update/password', 'update_password')->name('update.password');
+    });
 });
 
 // Admin Change Password
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/change/password', [AdminController::class, 'admin_change_password'])->name('admin.change_password');
-    Route::post('/admin/update/password', [AdminController::class, 'admin_update_password'])->name('admin.update_password');
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/change/password', 'admin_change_password')->name('admin.change_password');
+        Route::post('/admin/update/password', 'admin_update_password')->name('admin.update_password');
+    });
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Book Manage
+Route::middleware(['auth'])->group(function () {
+    Route::controller(BookController::class)->group(function () {
+        Route::get('/all/book', 'all_book')->name('all.book');
+        Route::get('/add/book', 'add_book')->name('add.book');
+        Route::post('/store/book', 'store_book')->name('store.book');
+        Route::get('/edit/book/{id}', 'edit_book')->name('edit.book');
+        Route::post('/update/book', 'update_book')->name('update.book');
+        Route::get('/delete/book/{id}', 'delete_book')->name('delete.book');
+    });
 });
+
 
 require __DIR__ . '/auth.php';
