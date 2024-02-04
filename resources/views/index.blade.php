@@ -1,14 +1,15 @@
 @extends('dashboard')
+@section('title', 'Моята библиотека | Начало')
 @section('content')
     <div class="dashboard-cards">
         <div class="row">
 
             @php
-                $return_book = App\Models\Order::where('status', 1)->get();
+                $return_book = App\Models\Order::where('status', '1')->get();
                 $books = App\Models\Book::all();
                 $users = App\Models\User::where('active', 1)->get();
 
-                $orders = App\Models\Order::where('status', 1)
+                $orders = App\Models\Order::where('status', '0')
                     ->orderBy('id', 'desc')
                     ->take(10)
                     ->get();
@@ -31,7 +32,6 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-
                 <div class="card horizontal cardIcon waves-effect waves-dark">
                     <div class="card-image blue">
                         <i class="material-icons dp48">book</i>
@@ -108,18 +108,23 @@
                                             </center>
                                         </td>
                                         <td>
-                                            <center> {{ $order->user_fullname }}</center>
+                                            <center> {{ $order->user->name }}</center>
                                         </td>
                                         <td>
                                             <center>
-                                                <button type="button"
-                                                    class="btn mb-2 mb-md-0 btn-secondary btn-block btn-round"><i
-                                                        class="material-icons dp48">settings</i> Преглед
-                                                </button>
+                                                <a href="{{ route('details.order', $order->id) }}" type="button" 
+                                                    class="btn mb-2 mb-md-0 btn-secondary btn-block btn-round">Детайли</a>
                                             </center>
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if (count($orders) == 0)
+                                    <tr>
+                                        <td colspan="3">
+                                            <center>Няма налични заявки</center>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

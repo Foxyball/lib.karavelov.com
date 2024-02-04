@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+Моята библиотека | Добавяне на потребител
+@endsection
 @section('content')
     <form id="myForm" action="{{ route('store.user') }}" method="POST">
         @csrf

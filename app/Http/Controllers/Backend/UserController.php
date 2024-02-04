@@ -107,6 +107,18 @@ class UserController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function search_user(Request $request)
+    {
+
+        $search = $request->search;
+
+        $users = User::where('name', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->latest()->paginate(5);
+
+        return view('user.user_all', compact('users'));
+    }
+
     public function change_password($id)
     {
         $user = User::findOrFail($id);
@@ -119,12 +131,14 @@ class UserController extends Controller
 
         $new_password = $request->new_password;
 
-        $request->validate([
-            'new_password' => 'required'
-        ],
-        [
-            'new_password.required' => 'Полето за нова парола е задължително!',
-        ]);
+        $request->validate(
+            [
+                'new_password' => 'required'
+            ],
+            [
+                'new_password.required' => 'Полето за нова парола е задължително!',
+            ]
+        );
 
         $id = $request->id;
         $user = User::findOrFail($id);

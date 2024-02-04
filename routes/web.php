@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\GenreController;
+use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\PublisherController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\ProfileController;
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/publisher/{id}', 'edit_publisher')->name('edit.publisher');
         Route::post('/update/publisher', 'update_publisher')->name('update.publisher');
         Route::get('/delete/publisher/{id}', 'delete_publisher')->name('delete.publisher');
+        Route::get('/search/publisher', 'search_publisher')->name('search.publisher');
     });
 });
 
@@ -67,6 +69,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/genre/{id}', 'edit_genre')->name('edit.genre');
         Route::post('/update/genre', 'update_genre')->name('update.genre');
         Route::get('/delete/genre/{id}', 'delete_genre')->name('delete.genre');
+        Route::get('/search/genre', 'search_genre')->name('search.genre');
     });
 });
 
@@ -79,6 +82,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/user/{id}', 'edit_user')->name('edit.user');
         Route::post('/update/user/{id}', 'update_user')->name('update.user');
         Route::get('/delete/user/{id}', 'delete_user')->name('delete.user');
+        Route::get('/search/user', 'search_user')->name('search.user');
         Route::get('/user/change/password/{id}', 'change_password')->name('change.password');
         Route::post('/user/update/password', 'update_password')->name('update.password');
     });
@@ -102,6 +106,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/book/{id}', 'edit_book')->name('edit.book');
         Route::post('/update/book', 'update_book')->name('update.book');
         Route::get('/delete/book/{id}', 'delete_book')->name('delete.book');
+        Route::get('/search/book', 'search_book')->name('search.book');
+    });
+});
+
+// Order Manage
+Route::middleware(['auth'])->group(function () {
+    Route::controller(OrdersController::class)->group(function () {
+        Route::get('/all/order', 'all_order')->name('all.order');
+        Route::get('/add/order', 'add_order')->name('add.order');
+        Route::post('/store/order', 'store_order')->name('store.order');
+        Route::get('/edit/order/{id}', 'edit_order')->name('edit.order');
+        Route::post('/update/order', 'update_order')->name('update.order');
+        Route::get('/delete/order/{id}', 'delete_order')->name('delete.order');
+        Route::get('/search/order', 'search_order')->name('search.order');
+        Route::get('/current/order', 'current_order')->name('current.order');
+        Route::get('/details/order/{id}', 'order_details')->name('details.order');
     });
 });
 

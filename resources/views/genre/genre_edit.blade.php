@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Редактиране на жанр
+@endsection
 @section('content')
     <form action="{{ route('update.genre') }}" method="POST">
         @csrf

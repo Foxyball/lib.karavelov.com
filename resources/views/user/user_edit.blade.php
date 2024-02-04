@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title') 
+Моята библиотека | Редактиране на потребител
+@endsection
 @section('content')
     <form id="myForm" action="{{ route('update.user',$user->id) }}" method="POST">
         @csrf

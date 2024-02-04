@@ -1,20 +1,19 @@
 @extends('dashboard')
 @section('title')
-    Моята библиотека | Всички издатели
+    Моята библиотека | Всички заявки
 @endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-action">
-                    <span class="card-title">Всички издатели</span>
+                    <span class="card-title">Всички заявки</span>
                 </div>
                 <div class="card-content">
 
-                    <form action="{{ route('search.publisher') }}" method="GET">
+                    <form action="{{ route('search.order') }}" method="GET">
                         <div class="input-field">
-                            <input id="search" type="search" placeholder="Търси по име на издател" name="search"
-                                required>
+                            <input id="search" type="search" placeholder="Търси по име на жанр" name="search" required>
                             <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
@@ -30,29 +29,33 @@
                         <thead>
                             <tr>
                                 <th>Име</th>
+                                <th>Дата на връщане</th>
+                                <th>Статус</th>
                                 <th>Действие</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($publishers as $publisher)
+                            @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ $publisher->publisher }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($order->date_end)->format('d.m.Y') }}</td>
                                     <td>
-                                        <a href="{{ route('edit.publisher', $publisher->id) }}"><i
-                                                class="fa-solid fa-edit"></i></a>
-                                        <a href="{{ route('delete.publisher', $publisher->id) }}" id="delete"><i
+                                        @if ($order->status == 0)
+                                            <span style="color:red"> За връщане </span>
+                                        @elseif ($order->status == 1)
+                                            <span>Изпълнена</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('edit.order', $order->id) }}"><i class="fa-solid fa-edit"></i></a>
+                                        <a href="{{ route('delete.order', $order->id) }}" id="delete"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-                            @if (count($publishers) == 0)
-                                <tr>
-                                    <td style="color:red;" colspan="2">Няма намерени резултати</td>
-                                </tr>
-                            @endif
                         </tbody>
                     </table>
-                    {{ $publishers->links('vendor.pagination.custom') }}
+                    {{ $orders->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </div>

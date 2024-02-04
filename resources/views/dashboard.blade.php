@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Моята библиoтека</title>
+    <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminAssets/assets/materialize/css/materialize.min.css') }}"
         media="screen,projection" />
@@ -23,6 +23,11 @@
 
     <!-- toastr -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -49,8 +54,8 @@
         </div>
         <!-- /. WRAPPER  -->
 
-          <!--plugins-->
-    <script src="{{ asset('adminAssets/assets/js/jquery.min.js') }}"></script>
+        <!--plugins-->
+        <script src="{{ asset('adminAssets/assets/js/jquery.min.js') }}"></script>
 
         <!-- toastr -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -104,7 +109,10 @@
         <!-- Custom Js -->
         <script src="{{ asset('adminAssets/assets/js/custom-scripts.js') }}"></script>
 
-
+        <!-- Select2 JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+            integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 

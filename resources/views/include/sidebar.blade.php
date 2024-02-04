@@ -37,13 +37,13 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#"><i class="fa-solid fa-plus"></i>Нова</a>
+                            <a href="{{route('add.order')}}"><i class="fa-solid fa-plus"></i>Нова</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa-solid fa-bars"></i>Менажиране</a>
+                            <a href="{{route('all.order')}}"><i class="fa-solid fa-bars"></i>Менажиране</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa-solid fa-hourglass-end"></i>Текущи заявки</a>
+                            <a href="{{route('current.order')}}"><i class="fa-solid fa-hourglass-end"></i>Текущи заявки</a>
                         </li>
 
 

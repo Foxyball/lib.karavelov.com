@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+Моята библиотека | Добавяне на жанр
+@endsection
 @section('content')
 
 <form id="myForm" action="{{ route('store.genre') }}" method="POST">

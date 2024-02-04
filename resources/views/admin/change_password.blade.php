@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Промяна на парола
+@endsection
 @section('content')
     <form id="myForm" action="{{ route('admin.update_password') }}" method="POST">
         @csrf
