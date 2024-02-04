@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Промяна на парола
+@endsection
 @section('content')
     <form id="myForm" action="{{ route('update.password') }}" method="POST">
         @csrf
@@ -11,8 +14,7 @@
                 <h6 class="mb-0">Нова парола</h6>
             </div>
             <div class="col-sm-9 text-secondary">
-                <input type="password" name="new_password"
-                    class="form-control @error('new_password') is-invalid @enderror"
+                <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror"
                     id="new_password" placeholder="Въведи нова парола">
 
                 {{-- @error('new_password')

@@ -91,4 +91,14 @@ class PublisherController extends Controller
 
         return redirect()->route('all.publisher')->with($notification);
     }
+
+    public function search_publisher(Request $request)
+    {
+
+        $search = $request->search;
+
+        $publishers = Publisher::where('publisher', 'like', '%' . $search . '%')->latest()->paginate(5);
+
+        return view('publisher.publisher_all', compact('publishers'));
+    }
 }

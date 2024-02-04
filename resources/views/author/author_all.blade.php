@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Всички автори
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -42,7 +45,7 @@
                                 </tr>
                             @endforeach
 
-                            @if ($authors->isEmpty())
+                            @if (count($authors) == 0)
                                 <tr>
                                     <td style="color:red;" colspan="2">Няма намерени резултати</td>
                                 </tr>

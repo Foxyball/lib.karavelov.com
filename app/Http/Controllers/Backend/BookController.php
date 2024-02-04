@@ -145,4 +145,13 @@ class BookController extends Controller
 
         return redirect()->route('all.book')->with($notification);
     }
+
+    public function search_book(Request $request)
+    {
+        $search = $request->search;
+
+        $books = Book::where('book', 'like', '%' . $search . '%')->paginate(5);
+
+        return view('book.book_all', compact('books'));
+    }
 }

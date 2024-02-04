@@ -86,4 +86,13 @@ class GenreController extends Controller
 
         return redirect()->route('all.genre')->with($notification);
     }
+
+    public function search_genre(Request $request)
+    {
+        $search = $request->search;
+
+        $genres = Genre::where('genre', 'like', '%' . $search . '%')->latest()->paginate(5);
+
+        return view('genre.genre_all', compact('genres'));
+    }
 }

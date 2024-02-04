@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Редактиране на автор
+@endsection
 @section('content')
 
 <form action="{{route('update.author')}}" method="POST">

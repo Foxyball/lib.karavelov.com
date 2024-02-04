@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('title')
+    Моята библиотека | Всички жанрове
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -7,6 +10,14 @@
                     <span class="card-title">Всички жанрове</span>
                 </div>
                 <div class="card-content">
+
+                    <form action="{{ route('search.genre') }}" method="GET">
+                        <div class="input-field">
+                            <input id="search" type="search" placeholder="Търси по име на жанр" name="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
 
                     @if (Session::has('success'))
                         <div class="alert alert-success">
@@ -26,13 +37,17 @@
                                 <tr>
                                     <td>{{ $genre->genre }}</td>
                                     <td>
-                                        <a href="{{ route('edit.genre', $genre->id) }}"><i
-                                                class="fa-solid fa-edit"></i></a>
+                                        <a href="{{ route('edit.genre', $genre->id) }}"><i class="fa-solid fa-edit"></i></a>
                                         <a href="{{ route('delete.genre', $genre->id) }}" id="delete"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
+                            @if (count($genres) == 0)
+                                <tr>
+                                    <td style="color:red;" colspan="2">Няма намерени резултати</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                     {{ $genres->links('vendor.pagination.custom') }}
